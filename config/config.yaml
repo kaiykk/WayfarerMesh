@@ -1,0 +1,72 @@
+# Travel AI Assistant System Configuration
+# This file contains the main configuration for the application.
+# Environment variables can be used with ${VAR_NAME} syntax.
+# Environment variable overrides use the format: TRIP_ASSISTANT_SECTION_KEY
+
+database:
+  # Path to the SQLite database file
+  path: "data/travel_new.sqlite"
+  
+  # Maximum number of database connections in the pool
+  pool_size: 5
+  
+  # Connection timeout in seconds
+  timeout: 30.0
+  
+  # Number of retry attempts for failed database operations
+  retry_attempts: 3
+  
+  # Exponential backoff multiplier for retries (delay = backoff_factor ^ attempt)
+  retry_backoff_factor: 2.0
+
+llm:
+  # LLM provider name (e.g., "openai", "anthropic")
+  provider: "openai"
+  
+  # Specific model identifier (e.g., "gpt-4", "gpt-3.5-turbo")
+  model_name: "gpt-4"
+  
+  # API authentication key (use environment variable for security)
+  api_key: "${OPENAI_API_KEY}"
+  
+  # Sampling temperature for response generation (0.0-2.0)
+  # Lower values = more deterministic, higher values = more creative
+  temperature: 0.7
+  
+  # Maximum number of tokens in generated responses
+  max_tokens: 1000
+
+cache:
+  # Whether caching is enabled
+  enabled: true
+  
+  # Time-to-live for cached entries in seconds (300 = 5 minutes)
+  ttl_seconds: 300
+  
+  # Maximum number of entries in the cache
+  max_size: 1000
+
+logging:
+  # Logging level: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  level: "INFO"
+  
+  # Log output format: "json" or "text"
+  format: "json"
+  
+  # Path to the log file
+  file_path: "logs/app.log"
+  
+  # Log file rotation size threshold
+  rotation: "10 MB"
+  
+  # Number of rotated log files to retain
+  retention: 20
+  
+  # Whether to output logs to console in addition to file
+  console_output: true
+
+# Directory containing prompt templates
+prompts_dir: "prompts"
+
+# Default language code for prompts (e.g., "en", "zh")
+default_language: "en"
