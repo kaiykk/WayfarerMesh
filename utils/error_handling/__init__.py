@@ -9,6 +9,7 @@ from .exceptions import (
     ValidationError,
     ToolExecutionError,
 )
+from .retry import retry_on_error
 
 __all__ = [
     "TravelAssistantError",
@@ -18,4 +19,5 @@ __all__ = [
     "TemplateError",
     "ValidationError",
     "ToolExecutionError",
+    "retry_on_error",
 ]
